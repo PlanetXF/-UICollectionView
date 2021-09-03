@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong, readwrite) UICollectionView *collectionView;
 
-@property (nonatomic, assign) NSUInteger *numberOfItems;
+@property (nonatomic, assign) NSInteger *numberOfItems;
 
 @property (nonatomic, copy) NSArray *bindData;
 
@@ -42,7 +42,7 @@
 {
     self.numberOfItems = binding.count;
     self.bindData = binding;
-    self.collectionView = [self collectionView];
+    [self.collectionView reloadData];
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
@@ -77,9 +77,9 @@
     return 1;
 }
 //一组的item个数
-- (NSUInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return (NSUInteger)self.numberOfItems;
+    return self.numberOfItems;
 }
 //返回每个item
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
